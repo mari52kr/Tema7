@@ -12,36 +12,25 @@
 
 
 <body>
-    <p>Hvad er din alder?</p>
-    <input type="text" id="min">
-    <p>Hvad er din dates alder?</p>
-    <input type="text" id="date">
-    <button>Beregn datealder</button>
-
+    <p>Hundens alder</p>
+    <input type="text" id="alder">
+    <button id="gammel">Beregn gammel</button>
+    <button id="ny">Beregn ny</button>
 
     <script>
-        document.querySelector("button").addEventListener("click", buttonClicked);
+        document.querySelector("#gammel").addEventListener("click", buttonClickedGammel);
+        document.querySelector("#ny").addEventListener("click", buttonClickedNy);
 
-        let min = document.querySelector("#min").value;
-        let date = document.querySelector("#date").value;
-        let regel = min / 2 + 7;
+        function buttonClickedGammel() {
+            let alder = document.querySelector("#alder").value;
+            let regel = alder * 7;
+            console.log(`Din hund er ${regel} år gammel`);
+        }
 
-        function buttonClicked() {
-            let min = document.querySelector("#min").value;
-            let date = document.querySelector("#date").value;
-            let regel = min / 2 + 7;
-            let resultat = `Alderen er ${regel}`;
-            console.log(resultat);
-
-            if (min <= 14) {
-                console.log("Du er for ung!")
-            } else if (date <= 14) {
-                console.log("Du er for ung!")
-            } else if (regel >= date) {
-                console.log("PEDO!")
-            } else if (date >= regel) {
-                console.log("Det er godkendt")
-            }
+        function buttonClickedNy() {
+            let alder = document.querySelector("#alder").value;
+            let regel2 = 16 * Math.log(alder) + 31;
+            console.log(`Din hun er ${regel2} år gammel`);
         }
 
     </script>
