@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="da">
 
 <head>
     <meta charset="utf-8">
@@ -9,13 +9,86 @@
 </head>
 
 <body>
-   <style>
+    <style>
+        body {
+            background-color: azure;
+            margin: 0;
+        }
+
+        main {
+            padding-right: 10vw;
+            padding-left: 10vw;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        header {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 15px;
+
+        }
+
+        article {
+            border: 1px solid black;
+        }
+
+        footer {
+            margin-top: 5px;
+            text-align: center;
+            border: 1px solid black;
+            margin-top: 50px;
+        }
+
+        @media screen and (max-width: 800px) {
+            section {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            body {
+                text-align: center;
+            }
+        }
 
     </style>
+
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <h2>Undertitel</h2>
+        <section>
+            <article id="1">
+                <img src="https://placeimg.com/300/300/people">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, sequi omnis beatae itaque quibusdam suscipit vel repudiandae earum alias officia, in necessitatibus deserunt nesciunt, cumque dolore mollitia iste fuga at!</p>
+            </article>
+            <article id="2">
+                <img src="https://placeimg.com/300/300/arch">
+                <h3>Article 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nesciunt, nihil ab quaerat laudantium deleniti magnam error vel, natus libero omnis dolorum perferendis harum sequi, assumenda minima perspiciatis placeat blanditiis.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>This is a footer</p>
+    </footer>
 
     <script>
 
     </script>
+
 </body>
 
 </html>
