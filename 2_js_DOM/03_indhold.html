@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript og DOM</title>
+    <style>
+        body {
+            background-color: azure;
+            margin: 0;
+        }
+
+        main {
+            padding-right: 10vw;
+            padding-left: 10vw;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        header {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 15px;
+
+        }
+
+        article {
+            border: 1px solid black;
+        }
+
+        footer {
+            margin-top: 5px;
+            text-align: center;
+            border: 1px solid black;
+            margin-top: 50px;
+        }
+
+        @media screen and (max-width: 800px) {
+            section {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            body {
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <h2>Undertitel</h2>
+        <section>
+            <article id="1">
+                <img src="https://placeimg.com/300/400/people">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, sequi omnis beatae itaque quibusdam suscipit vel repudiandae earum alias officia, in necessitatibus deserunt nesciunt, cumque dolore mollitia iste fuga at!</p>
+            </article>
+            <article id="2">
+                <img src="https://placeimg.com/300/400/arch">
+                <h3>Article 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nesciunt, nihil ab quaerat laudantium deleniti magnam error vel, natus libero omnis dolorum perferendis harum sequi, assumenda minima perspiciatis placeat blanditiis.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>This is a footer</p>
+    </footer>
+
+    <script>
+        const overskrift = document.querySelector("h1");
+        overskrift.textContent = "Her er den udskiftet";
+        console.log(overskrift.textContent);
+
+        const tekst1 = document.querySelector("article:nth-child(1) h3");
+        tekst1.textContent = "Her endrer jeg på vores tekst.";
+        console.log(tekst1.textContent);
+
+        const tekst2 = document.querySelector("article:nth-child(1) p");
+        tekst2.innerHTML = "Her endrer <b>jeg</b> på vores tekst.";
+        console.log(tekst2.innerHTML);
+
+        const tekst3 = document.querySelector("article:nth-child(2) h3");
+        tekst3.textContent = "Her endrer jeg på vores tekst.";
+        console.log(tekst3.textContent);
+
+        const tekst4 = document.querySelector("article:nth-child(2) p");
+        tekst4.innerHTML = "Her endrer <b>jeg</b> på vores tekst.";
+        console.log(tekst4.innerHTML);
+
+
+    </script>
+
+</body>
+
+</html>
