@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript og DOM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: azure;
+            margin: 30px;
+        }
+
+    </style>
+
+    <main>
+        <h2>Playiste</h2>
+        <ul id="display"></ul>
+    </main>
+
+    <footer>
+        <p>This is a footer</p>
+    </footer>
+
+    <script>
+        const playlist = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+        playlist.forEach(tal => display.innerHTML += "<li>" + tal + "</li>");
+
+    </script>
+
+</body>
+
+</html>
