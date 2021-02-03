@@ -10,10 +10,20 @@
             font-family: monospace;
             color: darkblue;
             line-height: 150%;
-            font-size: 20px;
+        }
+
+        .typo2 {
+            font-family: monospace;
+            color: darkblue;
+            line-height: 150%;
+            font-size: 30px;
         }
 
         p {
+            cursor: pointer;
+        }
+
+        h3 {
             cursor: pointer;
         }
 
@@ -52,6 +62,19 @@
             document.querySelector("button").addEventListener("click", () => {
                 alleP.forEach(p => {
                     p.classList.remove("typo")
+                })
+            })
+
+            let alleH3 = document.querySelectorAll("h3")
+            alleH3.forEach(H3 => {
+                H3.addEventListener("click", () => {
+                    H3.classList.add("typo2");
+                })
+            })
+
+            document.querySelector("button").addEventListener("click", () => {
+                alleH3.forEach(H3 => {
+                    H3.classList.remove("typo2")
                 })
             })
         }
