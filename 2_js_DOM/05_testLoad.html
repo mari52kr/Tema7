@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript og DOM</title>
+    <style>
+        body {
+            background-color: azure;
+            margin: 0;
+        }
+
+        main {
+            padding-right: 10vw;
+            padding-left: 10vw;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        header {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 15px;
+
+        }
+
+        article {
+            border: 1px solid black;
+        }
+
+        footer {
+            margin-top: 5px;
+            text-align: center;
+            border: 1px solid black;
+            margin-top: 50px;
+        }
+
+        @media screen and (max-width: 800px) {
+            section {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            body {
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <h2>Undertitel</h2>
+        <section>
+            <article id="1">
+                <img src="https://placeimg.com/300/400/people">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, sequi omnis beatae itaque quibusdam suscipit vel repudiandae earum alias officia, in necessitatibus deserunt nesciunt, cumque dolore mollitia iste fuga at!</p>
+            </article>
+            <article id="2">
+                <img src="https://placeimg.com/300/400/arch">
+                <h3>Article 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nesciunt, nihil ab quaerat laudantium deleniti magnam error vel, natus libero omnis dolorum perferendis harum sequi, assumenda minima perspiciatis placeat blanditiis.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>This is a footer</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            console.log("Så fungerer DOMContentLoaded");
+
+            const overskrift1 = document.querySelector("h1");
+            overskrift1.textContent = "Her er den udskiftet";
+            console.log(overskrift1.textContent);
+
+            const tekst1 = document.querySelector("article:nth-child(1) h3");
+            tekst1.textContent = "Her endrer jeg på vores tekst.";
+            console.log(tekst1.textContent);
+
+            const tekst2 = document.querySelector("article:nth-child(1) p");
+            tekst2.innerHTML = "Her endrer <b>jeg</b> på vores tekst.";
+            console.log(tekst2.innerHTML);
+
+            const tekst3 = document.querySelector("article:nth-child(2) h3");
+            tekst3.textContent = "Her endrer jeg på vores tekst.";
+            console.log(tekst3.textContent);
+
+            const tekst4 = document.querySelector("article:nth-child(2) p");
+            tekst4.innerHTML = "Her endrer <b>jeg</b> på vores tekst.";
+            console.log(tekst4.innerHTML);
+
+            //Her starter vi med å udskifte billeder
+            const pic1 = document.querySelector("article:nth-child(1) img");
+            pic1.src = "billeder/skandinavien.jpg";
+            pic1.alt = "Her er et flott billede af icekiid";
+            console.log(pic1);
+
+            const pic2 = document.querySelector("article:nth-child(2) img");
+            pic2.src = "billeder/norskegitsfordig.jpg";
+            pic2.alt = "Her er et flott billede af Cezinando";
+            console.log(pic2);
+
+
+
+            //Her starter vi med å tilføje nyt element
+
+
+            //Tar fatt i section og kaller den mainSection
+            let mainSection = document.querySelector("section");
+
+            //Laver en helt ny article
+            let newArticle = document.createElement("article");
+
+            //Laver en ny img elemenet og tilføjer en src før jeg appender den til newArticle
+            let pic3 = document.createElement("img");
+
+            pic3.src = "https://placeimg.com/300/400/arch";
+
+            newArticle.appendChild(pic3)
+
+            //Laver et h3 element med tekst, tilføjer h3 til overskrift, og overskrift til article.
+            let overskrift = document.createElement("h3");
+
+            let overskriftText = document.createTextNode("Article 3")
+
+            overskrift.appendChild(overskriftText);
+
+            newArticle.appendChild(overskrift);
+
+            //Laver et p element, skriver så en brødtekst, tilføjer brødteksten til p-elementet som så blir tilføjet i article elementet.
+            let brodtekst = document.createElement("p");
+
+            let brodtekstText = document.createTextNode("Anders er så fucking sej")
+
+            brodtekst.appendChild(brodtekstText);
+
+            newArticle.appendChild(brodtekst);
+
+            //Tilføjer artikkelen til mainSection som har tatt fat i  section fra vores HTML.
+            mainSection.appendChild(newArticle);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
