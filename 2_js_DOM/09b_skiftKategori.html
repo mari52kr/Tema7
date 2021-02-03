@@ -158,30 +158,31 @@
 
             //Tilføjer artikkelen til mainSection som har tatt fat i  section fra vores HTML.
             mainSection.appendChild(newArticle);
-        }
 
-        //skiftBillede oppgaven starter
-        let grabPic = document.querySelector("article:nth-child(1) img");
-        grabPic.addEventListener("click", skiftBillede);
 
-        function skiftBillede() {
-            const rand = Math.round(Math.random() * 10);
-            console.log("grabPic fungerer");
-            grabPic.src = "https://placeimg.com/400/400/"+rand;
-            console.log(rand);
-        }
+            //skiftBillede oppgaven starter
+            let grabPic = document.querySelector("article:nth-child(1) img");
+            grabPic.addEventListener("click", skiftBillede);
 
-        //SkiftKategori starter
+            function skiftBillede() {
+                const rand = Math.round(Math.random() * 10);
+                console.log("grabPic fungerer");
+                grabPic.src = "https://placeimg.com/400/400/" + rand;
+                console.log(rand);
+            }
 
-        let grabPic2 = document.querySelector("article:nth-child(2) img");
-        grabPic2.addEventListener("click", skift);
+            //SkiftKategori starter
 
-        function skift() {
-            console.log("grabPic2 fungerer");
-            const nummer = Math.round(Math.random() * 4);
-            const kategorier = ["animals", "arch", "people", "nature", "tech"];
-            grabPic2.src = "https://placeimg.com/400/400/" + kategorier[nummer];
-            grabPic2.alt = kategorier[nummer];
+            let grabPic2 = document.querySelector("article:nth-child(2) img");
+            grabPic2.addEventListener("click", skift);
+
+            function skift() {
+                console.log("grabPic2 fungerer");
+                const nummer = Math.round(Math.random() * 4);
+                const kategorier = ["animals", "arch", "people", "nature", "tech"];
+                grabPic2.src = "https://placeimg.com/400/400/" + kategorier[nummer];
+                grabPic2.alt = kategorier[nummer];
+            }
         }
 
     </script>
