@@ -5,16 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <style></style>
+    <style>
+
+        body {
+            background-color: beige;
+        }
+
+        article {
+            border: 1px dotted black;
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+        }
+    </style>
 </head>
 
 <body>
 
-    <section id="data-container"></section>
+    <section id="liste"></section>
     <template>
         <article>
-            <h3>test</h3>
-
+            <h3></h3>
+            <img src="" alt="">
+            <p>Type:</p>
+            <p>Levested:</p>
         </article>
     </template>
 
@@ -42,21 +56,28 @@
             {
                 "navn": "sild",
                 "type": "fisk",
-                "billede": "http://mabe-kea.dk/E19/pics/sild.png",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.jpg",
                 "levested": "søen"
             },
             {
                 "navn": "krokodille",
                 "type": "krybdyr",
-                "billede": "http://mabe-kea.dk/E19/pics/kroko.png",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg",
                 "levested": "Florida"
             }
         ];
 
         function start() {
-            const listeVisning = document.querySelector("#data-container");
+            const container = document.querySelector("#liste");
+            const dyrTemplate = document.querySelector("template");
+            //Noget klogt noget
             dyr.forEach(dyr => {
-                listeVisning.innerHTML += `<p>${dyr.navn}, ${dyr.type} fra ${dyr.levested}`
+                let klon = dyrTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = dyr.navn;
+                klon.querySelector("img").src = dyr.billede;
+                klon.querySelector("p").textContent += dyr.type;
+                klon.querySelector("p").nextElementSibling.textContent += dyr.levested;
+                container.appendChild(klon);
             })
         }
 
