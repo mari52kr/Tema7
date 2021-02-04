@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            background-color: beige;
+        }
+
+        article {
+            border: 1px dotted black;
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="liste"></section>
+    <template>
+        <article>
+            <h3></h3>
+            <img src="" alt="">
+            <p>Type:</p>
+            <p>Levested:</p>
+            <ul class="levestedListe"></ul>
+        </article>
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+
+            const fil = "dyrArrayJson.json";
+
+            async function hentdata(fil) {
+                const result = await fetch(fil);
+                const json = await result.json();
+                vis(json);
+
+            }
+            const container = document.querySelector("#liste");
+            const dyrTemplate = document.querySelector("template");
+
+            function vis(dyr) {
+                dyr.forEach(dyr => {
+                    let klon = dyrTemplate.cloneNode(true).content;
+                    klon.querySelector("h3").textContent = dyr.navn;
+                    klon.querySelector("img").src = dyr.billede;
+                    klon.querySelector("p").textContent = dyr.type;
+
+                    dyr.levested.forEach(levested => {
+                        klon.querySelector(".levestedListe").innerHTML += "<li>" + levested + "</li>"
+                    })
+
+                    container.appendChild(klon);
+                })
+            }
+
+
+            hentdata(fil);
+        }
+    </script>
+</body></html>
