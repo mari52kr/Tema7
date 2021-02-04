@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style></style>
+</head>
+
+<body>
+
+    <section id="liste"></section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        let dyr = [{
+                "navn": "frø",
+                "type": "amfibie",
+                "billede": "http://mabe-kea.dk/E19/pics/frog.png",
+                "levested": "sumpen"
+            },
+            {
+                "navn": "gris",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/pig.png",
+                "levested": "svinefarme"
+            },
+            {
+                "navn": "ræv",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/fox.png",
+                "levested": "skoven"
+            },
+            {
+                "navn": "sild",
+                "type": "fisk",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.png",
+                "levested": "søen"
+            },
+            {
+                "navn": "krokodille",
+                "type": "krybdyr",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.png",
+                "levested": "Florida"
+            }
+        ];
+
+        function start() {
+            const listeVisning = document.querySelector("#liste");
+            console.log(dyr);
+        }
+
+    </script>
+</body>
+
+</html>
