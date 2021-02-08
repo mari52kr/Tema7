@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="da">
 
 <head>
     <meta charset="utf-8">
@@ -7,12 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title></title>
     <style>
-        body {
-            background: rgb(174, 238, 232);
-            background: radial-gradient(circle, rgba(174, 238, 232, 1) 0%, rgba(210, 231, 255, 1) 100%);
+
+        html {
             font-family: 'Roboto', sans-serif;
             padding-left: 5vw;
             padding-right: 5vw;
+            background-color: azure;
         }
 
         img {
@@ -21,8 +21,8 @@
 
         #liste {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 1em;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 2em;
             margin: 2em;
         }
 
@@ -33,110 +33,60 @@
         }
 
         article {
-            padding: 20px;
-            margin: 20px;
-            border: 2px dotted rgba(240, 46, 170, 0.4);
-            background-color: #e1f7f7;
-            border-radius: 15px;
-
-            box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
-
-            transition: 0.5s;
+            background-color: aliceblue;
+            padding: 10px;
         }
 
-        article:hover {
-            transform: scale(1.05);
-            background: rgba(240, 46, 170, 0.15);
-            transition: 0.5s;
-        }
-
-        p {
-            font-style: italic;
-        }
-
-        h1 {
-            text-align: center;
-            color: #740090;
-        }
-
-        h2 {
-            color: #740090;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 6vh;
-        }
 
         button {
-            text-align: center;
-            order: none;
-            background: #740090;
-            color: #ffffff !important;
-            font-weight: 100;
             padding: 15px;
-            text-transform: uppercase;
             border-radius: 6px;
-            display: inline-block;
-            transition: all 0.3s ease 0s;
-        }
-
-        button:hover {
-            color: #ffffff !important;
-            font-weight: 400 !important;
-            transform: scale(1.1);
-            background: #510364;
-            box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.57);
-            box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.57);
-            transition: all 0.3s ease 0s;
-        }
-
-        button:active {
-            background: #621149;
         }
 
         .valgt {
             background: #3b0248;
+            color: white;
         }
     </style>
 
 </head>
 
 <body>
+
     <header>
         <h1>Alle</h1>
     </header>
 
     <nav>
-        <button data-troende="alle" class="valgt">Alle</button>
-        <button data-troende="ja">Troende</button>
-        <button data-troende="nej">Ikke troende</button>
-        <button data-troende="tvivler">Tvivler</button>
+        <button data-kategori="alle" class="valgt">Alle</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="desserter">Desserter</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
     </nav>
 
     <section id="liste"></section>
 
     <template>
-        <article class="person">
-            <img src="" alt="Billede" class="profil-billede">
+        <article class="menu">
+            <img src="" alt="" class="billede">
             <h2 class="navn"></h2>
-            <p class="køn"></p>
-            <p class="titel"></p>
-            <p class="fødselsdag"></p>
+            <p class="pris"></p>
+            <p class="kortbeskrivelse"></p>
+            <p class="langbeskrivelse"></p>
+            <p class="oprindelsesregion"></p>
         </article>
     </template>
 
     <script>
         const header = document.querySelector("header h1");
-        const medieurl = "https://persongalleri-5d3e.restdb.io/media/";
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
         const myHeaders = {
 
-            "x-apikey": "600fe9211346a1524ff12e31"
+            "x-apikey": "600ec2fb1346a1524ff12de4"
         }
         document.addEventListener("DOMContentLoaded", start)
-        let personer;
+        let menu;
         let filter = "alle";
 
         // første funktion der kaldes efter DOM er loaded
@@ -147,16 +97,15 @@
         }
 
         function filtrerPersoner() {
-            filter = this.dataset.troende;
+            filter = this.dataset.kategori;
             document.querySelector(".valgt").classList.remove("valgt");
             this.classList.add("valgt");
-
-            visPersoner();
             header.textContent = this.textContent;
+            visPersoner();
         }
 
         async function loadJSON() {
-            const JSONData = await fetch("https://persongalleri-5d3e.restdb.io/rest/persongalleri", {
+            const JSONData = await fetch("https://babushka-dd8a.restdb.io/rest/menu", {
                 headers: myHeaders
             });
             personer = await JSONData.json();
@@ -169,24 +118,17 @@
             const dest = document.querySelector("#liste"); // container til articles med en person
             const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
             dest.textContent = "";
-            personer.forEach(person => {
-                console.log("Troende", person.troende);
+            personer.forEach(menu => {
+                console.log("Kategori", menu.kategori);
                 // loop igennem json (personer)
-                if (filter == person.troende || filter == "alle") {
+                if (filter == menu.kategori || filter == "alle") {
                     const klon = skabelon.cloneNode(true);
-                    klon.querySelector(".navn").textContent = person.fornavn + " " + person.efternavn;
-                    klon.querySelector(".profil-billede").src = medieurl + person.billede;
-                    klon.querySelector(".titel").textContent = person.titel;
-                    klon.querySelector(".fødselsdag").textContent = person.fødselsdag;
-
-                    const string = person.fødselsdag; // f.eks. 2011-06-07T00:00:00.000Z
-                    const pattern = /[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/; // mønster: XXXX-XX-XX
-                    const result = string.match(pattern); // find den del af string der matcher mønster (pattern)
-                    klon.querySelector(".fødselsdag").textContent = result; // indsæt teksten i klonen
-
-                    klon.querySelector(".profil-billede").title = person.fornavn + " " + person.efternavn;
-
-
+                    klon.querySelector(".navn").textContent = menu.navn;
+                    klon.querySelector(".pris").textContent = menu.pris + " kr";
+                    klon.querySelector(".kortbeskrivelse").textContent = menu.kortbeskrivelse;
+                    klon.querySelector(".langbeskrivelse").textContent = menu.langbeskrivelse;
+                    klon.querySelector(".oprindelsesregion").textContent = menu.oprindelsesregion;
+                    klon.querySelector(".billede").src = medieurl + menu.billede;
                     dest.appendChild(klon);
                 }
             })
