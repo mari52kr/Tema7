@@ -93,14 +93,13 @@
             transition: all 0.3s ease 0s;
         }
 
-        button:focus {
-            background: #3b0248;
-        }
-
         button:active {
             background: #621149;
         }
 
+        .valgt {
+            background: #3b0248;
+        }
     </style>
 
 </head>
@@ -147,6 +146,8 @@
 
         function filtrerPersoner() {
             filter = this.dataset.troende;
+            document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt");
 
             visPersoner();
             header.textContent = this.textContent;
@@ -177,8 +178,5 @@
                 }
             })
         }
-
     </script>
-</body>
-
-</html>
+</body></html>
