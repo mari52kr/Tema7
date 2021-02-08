@@ -1,182 +1,271 @@
 <!DOCTYPE html>
-<html lang="">
-
-<head>
+<html lang="en">
+	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title></title>
+    <title>Babushka</title>
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <style>
         body {
-            background: rgb(174, 238, 232);
-            background: radial-gradient(circle, rgba(174, 238, 232, 1) 0%, rgba(210, 231, 255, 1) 100%);
-            font-family: 'Roboto', sans-serif;
-            padding-left: 5vw;
-            padding-right: 5vw;
+            margin: 0;
+            padding: 0;
+            background-color: #f2e4d7;
+            color: #29484b;
         }
 
-        img {
-            width: 100%;
-        }
-
-        #liste {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 1em;
-            margin: 2em;
-        }
-
-        .person {
-            padding: 1em;
-            border: 1px solid;
-            border-radius: 1em;
-        }
-
-        article {
-            padding: 20px;
-            margin: 20px;
-            border: 2px dotted rgba(240, 46, 170, 0.4);
-            background-color: #e1f7f7;
-            border-radius: 15px;
-
-            box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
-
-            transition: 0.5s;
-        }
-
-        article:hover {
-            transform: scale(1.05);
-            background: rgba(240, 46, 170, 0.15);
-            transition: 0.5s;
-        }
-
-        p {
-            font-style: italic;
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        nav {
+            font-family: 'Russo One', sans-serif;
+            font-weight: normal;
         }
 
         h1 {
-            text-align: center;
-            color: #740090;
+            font-size: 36px;
         }
 
-        h2 {
-            color: #740090;
+        h3 {
+            font-size: 24px;
         }
 
         nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 6vh;
-        }
-
-        button {
             text-align: center;
-            order: none;
-            background: #740090;
-            color: #ffffff !important;
-            font-weight: 100;
-            padding: 15px;
-            text-transform: uppercase;
-            border-radius: 6px;
-            display: inline-block;
-            transition: all 0.3s ease 0s;
+            padding: 1em;
+            background-color: #000;
+            position: fixed;
+            left: 0;
+            right: 0;
         }
 
-        button:hover {
-            color: #ffffff !important;
-            font-weight: 400 !important;
-            transform: scale(1.1);
-            background: #510364;
-            box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.57);
-            box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.57);
-            transition: all 0.3s ease 0s;
+        nav a {
+            color: #9d9d9d;
+            text-decoration: none;
+            margin: 0 1em;
+            display: none;
         }
 
-        button:active {
-            background: #621149;
+        header {
+            background-image: url(../images/backgr.jpg);
+            background-size: cover;
         }
 
-        .valgt {
-            background: #3b0248;
+        .logo {
+            margin: 2em;
+            margin-top: 4em;
+        }
+
+        .page-header {
+            text-transform: capitalize;
+            padding-bottom: 9px;
+            margin: 40px 0 20px 20px;
+            border-bottom: 1px solid #7c1f17;
+        }
+
+        section img,
+        .modal img {
+            width: 100%;
+        }
+
+        .list-product {
+            margin: .5em;
+            padding: .5em;
+        }
+
+        .price {
+            color: #7c1f17;
+        }
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 1em;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #7c1f17;
+            width: 80%;
+        }
+
+        @media (min-width: 600px) {
+            section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                text-align: right;
+            }
+
+            nav a {
+                display: inline;
+            }
+
+            nav a:first-child {
+                float: left;
+                font-size: 25px;
+                line-height: 20px;
+            }
+
+            .list-product {
+                border: solid 1px #7c1f17;
+            }
+
+            .modal {
+                padding-top: 5em;
+            }
+
+            .modal img {
+                width: auto;
+            }
+        }
+
+        @media (min-width: 992px) {
+            header {
+                height: 75vh;
+            }
+
+            .logo {
+                margin-top: 5em;
+            }
+
+            main {
+                margin: auto;
+                width: 970px;
+            }
+
+            section {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .page-header {
+                margin: 40px 0 20px;
+            }
         }
     </style>
-
 </head>
 
 <body>
-    <header>
-        <h1>Alle</h1>
-    </header>
-
     <nav>
-        <button data-troende="alle" class="valgt">Alle</button>
-        <button data-troende="ja">Troende</button>
-        <button data-troende="nej">Ikke troende</button>
-        <button data-troende="tvivler">Tvivler</button>
+        <a href="index.html">Babushka</a>
+        <a href="#">About</a>
+        <a href="#">Menu</a>
+        <a href="#">Reserve</a>
     </nav>
-
-    <section id="liste"></section>
-
-    <template>
-        <article class="person">
-            <h2 class="navn"></h2>
-            <p class="køn"></p>
-            <img src="" alt="" class="profil-billede">
-        </article>
+    <header>
+        <img class="logo" src="images/logo.png">
+    </header>
+    <main></main>
+    <div class="modal">
+        <div class="modal-content">
+            <h3 class="modal-name">data-name</h3>
+            <img class="modal-image" src="data-img" alt="data-caption">
+            <p class="modal-description">data-longdescription</p>
+            <h4 class="modal-price">data-price</h4>
+            <h4 class="modal-discount">data-discount</h4>
+            <button>Close</button>
+        </div>
+    </div>
+    <template class="category">
+        <h1 class="page-header">data-category</h1>
     </template>
-
+    <template class="product">
+        <div class="list-product">
+            <a href="#">
+                <img class="product-small-img" src="data-small-img" alt="data-caption">
+            </a>
+            <h3 class="name">data-name</h3>
+            <h4 class="price">data-price</h4>
+            <h4 class="discount">data-discount</h4>
+            <button>details</button>
+        </div>
+    </template>
     <script>
-        const header = document.querySelector("header h1");
-        const medieurl = "https://persongalleri-5d3e.restdb.io/media/";
-        const myHeaders = {
+        let main = document.querySelector("main");
+        let modal = document.querySelector(".modal");
+        let categories_link = "http://kea-alt-del.dk/t5/api/categories";
+        let product_link = "http://kea-alt-del.dk/t5/api/product?id=";
 
-            "x-apikey": "600fe9211346a1524ff12e31"
-        }
-        document.addEventListener("DOMContentLoaded", start)
-        let personer;
-        let filter = "alle";
+        modal.addEventListener("click", function() {
+            modal.style.display = "none";
+        })
 
-        // første funktion der kaldes efter DOM er loaded
-        function start() {
-            const filterKnapper = document.querySelectorAll("nav button");
-            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerPersoner));
-            loadJSON();
+        function loadJSON(link, process, container = null) {
+            fetch(link).then(e => e.json()).then(data => process(data, container));
         }
 
-        function filtrerPersoner() {
-            filter = this.dataset.troende;
-            document.querySelector(".valgt").classList.remove("valgt");
-            this.classList.add("valgt");
-
-            visPersoner();
-            header.textContent = this.textContent;
-        }
-
-        async function loadJSON() {
-            const JSONData = await fetch("https://persongalleri-5d3e.restdb.io/rest/persongalleri", {
-                headers: myHeaders
+        function loopCategories(data) {
+            data.forEach(category => {
+                let clone = document.querySelector(".category").content.cloneNode(true);
+                let link = "http://kea-alt-del.dk/t5/api/productlist?category=" + category;
+                let productContainer = document.createElement('section');
+                productContainer.classList.add("productContainer");
+                clone.querySelector("h1").textContent = category;
+                main.appendChild(clone);
+                main.appendChild(productContainer);
+                loadJSON(link, showList, productContainer);
             });
-            personer = await JSONData.json();
-            console.log("Personer", personer);
-            visPersoner();
         }
 
-        //funktion der viser personer i liste view
-        function visPersoner() {
-            const dest = document.querySelector("#liste"); // container til articles med en person
-            const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
-            dest.textContent = "";
-            personer.forEach(person => {
-                console.log("Troende", person.troende);
-                // loop igennem json (personer)
-                if (filter == person.troende || filter == "alle") {
-                    const klon = skabelon.cloneNode(true);
-                    klon.querySelector(".navn").textContent = person.fornavn + " " + person.efternavn;
-                    klon.querySelector(".profil-billede").src = medieurl + person.billede;
-                    dest.appendChild(klon);
+        function showList(data, container) {
+            data.forEach(product => {
+                let clone = document.querySelector(".product").content.cloneNode(true);
+                let name = clone.querySelector(".name");
+                let image = clone.querySelector(".product-small-img");
+                let price = clone.querySelector(".price");
+                let discount = clone.querySelector(".discount");
+                let link = clone.querySelector("a");
+                let button = clone.querySelector("button");
+                button.addEventListener("click", function() {
+                    console.log(product.id);
+                    loadJSON(product_link + product.id, showDetails);
+                })
+                name.textContent = product.name;
+                image.src = "http://kea-alt-del.dk/t5/site/imgs/small/" + product.image + "-sm.jpg";
+                image.alt = product.name;
+                price.textContent = "Price: " + product.price + ",-";
+                if (product.discount > 0) {
+                    discount.textContent = "Now: " + Math.floor(product.price * product.discount / 100) + ",-";
+                    price.style.textDecoration = "line-through";
+                } else {
+                    discount.style.display = "none";
                 }
-            })
+                link.href = "http://kea-alt-del.dk/t5/site/imgs/large/" + product.image + ".jpg";
+                container.appendChild(clone);
+            });
         }
+
+        function showDetails(data) {
+            console.log(data);
+            modal.style.display = "block";
+            modal.querySelector(".modal-name").textContent = data.name;
+            modal.querySelector(".modal-image").src = "http://kea-alt-del.dk/t5/site/imgs/small/" + data.image + "-sm.jpg";
+            modal.querySelector(".modal-description").textContent = data.longdescription;
+            modal.querySelector(".modal-price").textContent = "Price: " + data.price;
+            modal.querySelector(".modal-discount").textContent = "Now: " + Math.floor(product.price * product.discount / 100) + ",-";
+        }
+
+        loadJSON(categories_link, loopCategories);
     </script>
 </body></html>
