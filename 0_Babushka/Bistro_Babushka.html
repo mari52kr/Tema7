@@ -26,7 +26,7 @@
             margin: 2em;
         }
 
-        .person {
+        .menu {
             padding: 1em;
             border: 1px solid;
             border-radius: 1em;
@@ -93,33 +93,33 @@
         // første funktion der kaldes efter DOM er loaded
         function start() {
             const filterKnapper = document.querySelectorAll("nav button");
-            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerPersoner));
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerMenuer));
             loadJSON();
         }
 
-        function filtrerPersoner() {
+        function filtrerMenuer() {
             filter = this.dataset.kategori;
             document.querySelector(".valgt").classList.remove("valgt");
             this.classList.add("valgt");
             header.textContent = this.textContent;
-            visPersoner();
+            visMenuer();
         }
 
         async function loadJSON() {
             const JSONData = await fetch("https://babushka-dd8a.restdb.io/rest/menu", {
                 headers: myHeaders
             });
-            personer = await JSONData.json();
-            console.log("Personer", personer);
-            visPersoner();
+            menuer = await JSONData.json();
+            console.log("Menuer", menuer);
+            visMenuer();
         }
 
         //funktion der viser personer i liste view
-        function visPersoner() {
+        function visMenuer() {
             const dest = document.querySelector("#liste"); // container til articles med en person
             const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
             dest.textContent = "";
-            personer.forEach(menu => {
+            menuer.forEach(menu => {
                 console.log("Kategori", menu.kategori);
                 // loop igennem json (personer)
                 if (filter == menu.kategori || filter == "alle") {
@@ -127,12 +127,18 @@
                     klon.querySelector(".navn").textContent = menu.navn;
                     klon.querySelector(".pris").textContent = menu.pris + " kr";
                     klon.querySelector(".kortbeskrivelse").textContent = menu.kortbeskrivelse;
-                    klon.querySelector(".langbeskrivelse").textContent = menu.langbeskrivelse;
                     klon.querySelector(".oprindelsesregion").textContent = menu.oprindelsesregion;
                     klon.querySelector(".billede").src = medieurl + menu.billede;
+
+                    klon.querySelector(".menu").addEventListener("click", () => visDetaljer(menu));
+
                     dest.appendChild(klon);
                 }
             })
+        }
+
+        function visDetaljer(hvem) {
+            location.href = `babushka_detalje.html?id=${hvem._id}`;
         }
     </script>
 </body></html>
