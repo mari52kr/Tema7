@@ -5,13 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title></title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+    <title>Bistro Babushka</title>
     <style>
-        html {
+        body {
             font-family: 'Roboto', sans-serif;
-            padding-left: 5vw;
-            padding-right: 5vw;
-            background-color: azure;
+            background: rgb(64, 0, 0);
+            margin: 0;
+        }
+
+        header {
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            color: #dbd6be;
         }
 
         img {
@@ -20,9 +34,12 @@
 
         #liste {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             grid-gap: 2em;
-            margin: 2em;
+            margin-left: 5vw;
+            margin-right: 5vw;
+            margin-top: 3vw;
+            margin-bottom: 3vw;
         }
 
         .menu {
@@ -32,29 +49,75 @@
         }
 
         article {
-            background-color: aliceblue;
+            background-color: #e8e3cd;
             padding: 10px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        article:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
         }
 
 
         button {
-            padding: 15px;
+            padding: 25px;
             border-radius: 6px;
+            margin-right: 5px;
+            margin-left: 5px;
+
+            background: #dbd6be;
+            color: #600000;
+
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: scale(1.05);
         }
 
         .valgt {
-            background: #3b0248;
-            color: white;
+            color: #dbd6be;
+            background: #600000;
+        }
+
+        nav {
+            padding-top: 2vw;
+        }
+
+        header img {
+            box-shadow: 0px 7px 9px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 7px 9px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 7px 9px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .pris {
+            font-weight: 600;
+        }
+
+        .oprindelsesregion {
+            font-style: italic;
+        }
+
+        @media only screen and (max-width: 650px) {
+            button {
+                padding: 10px;
+                border-radius: 6px;
+                margin-right: 5px;
+                margin-left: 5px;
+            }
         }
     </style>
 
 </head>
 
 <body>
+    <section id="splash">
+    </section>
 
     <header>
-        <h1>Alle</h1>
+        <img src="bilder/Bistro_Babushka_Header.png" alt="Bistro Babushka Splash">
         <nav>
             <button data-kategori="alle" class="valgt">Alle</button>
             <button data-kategori="forretter">Forretter</button>
@@ -62,6 +125,7 @@
             <button data-kategori="desserter">Desserter</button>
             <button data-kategori="drikkevarer">Drikkevarer</button>
         </nav>
+        <h1>Alle</h1>
     </header>
 
 
@@ -78,6 +142,10 @@
             <p class="oprindelsesregion"></p>
         </article>
     </template>
+
+    <footer>
+
+    </footer>
 
     <script>
         const header = document.querySelector("header h1");
